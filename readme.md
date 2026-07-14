@@ -64,7 +64,7 @@ A  Pomodoro Timer web application designed to improve productivity and time mana
 
 ## Screenshot
 
-![Project Screenshot](D:\projects\pomodoro-timer\screenshot.png)
+![Project Screenshot](https://github.com/sara-ahmed593/Pomodoro-Timer/blob/9597384bfcbef8ba93473bea7228f0a3a177f974/screenshot.png)
 
 
 
