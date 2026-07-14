@@ -1,0 +1,66 @@
+@use './variables';
+@use "./mixin" as mixins;
+
+.navbar {
+    @include mixins.flex-between;
+
+    width: 100%;
+    padding: 15px 0;
+    position: relative;
+
+
+
+    .logo {
+
+        @include mixins.flex-center;
+
+        gap: 6px;
+
+        h1 {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+    }
+
+    .nav-actions {
+        @include mixins.flex-between;
+        gap: 10px;
+    }
+
+    .progress-bar {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+
+        width: 100%;
+        height: 2px;
+
+        background: variables.$btn-active-bg;
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background: variables.$text-white;
+            transition: width .2s linear;
+        }
+    }
+}
+
+
+.nav-btn {
+    @include mixins.flex-center;
+
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: variables.$text-white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    gap: 4px;
+    transition: 0.2s;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.5);
+    }
+}

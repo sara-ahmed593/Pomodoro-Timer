@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./src/css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fa-solid fa-circle-check"></i>
+                <h1>Pomofocus</h1>
+            </div>
+            <div class="nav-actions">
+                <button class="nav-btn"><i class="fa-solid fa-chart-column"></i>Report</button>
+                <button class="nav-btn"><i class="fa-solid fa-gear"></i> Setting</button>
+                <button class="nav-btn login-btn"><i class="fa-solid fa-circle-user"></i> Sign In</button>
+                <button class="icon-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+            </div>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+        </nav>
+
+        <main class="card-container">
+
+            <section class="timer-card ">
+                <div class="timer-modes">
+                    <button class="mode-btn active">Pomodoro</button>
+                    <button class="mode-btn">Short Break</button>
+                    <button class="mode-btn">Long Break</button>
+                    <button class="mode-btn">Stopwatch</button>
+                </div>
+                <div class="time-display">25:00</div>
+
+                <div class="timer-controls">
+                    <button class="start-btn">START</button>
+
+                    <button class="next-btn hidden">
+                        <i class="fa-solid fa-forward-step"></i>
+                    </button>
+                </div>
+            </section>
+
+
+
+
+
+            <section>
+                <div class="session-info">
+                    <span class="session-count">#1</span>
+                    <p class="session-status">Time to focus!</p>
+                </div>
+
+                <section class="tasks-section">
+                    <div class="tasks-header">
+                        <h2>Tasks</h2>
+                        <button class="icon-btn icon-2"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+
+                    </div>
+                    <div class="divider"></div>
+                    <div class="tasks-list">
+
+                    </div>
+                    <button class="addtask-btn">
+                        <i class="fa-solid fa-circle-plus"></i> Add Task
+                    </button>
+
+
+                    <div class="add-container hidden">
+                        <div class="task-card">
+
+
+                            <input type="text" class="task-input" placeholder="What are you working on?">
+
+                            <div class="counter-label">Est Pomodoros</div>
+
+                            <div class="task-group">
+                                <input type="number" class="task-counter" value="1" min="1" readonly>
+                                <button type="button" class="task-counter-btn countup">
+                                    <i class="fa-solid fa-caret-up"></i>
+                                </button>
+                                <button type="button" class="task-counter-btn countdown">
+                                    <i class="fa-solid fa-caret-down"></i>
+                                </button>
+                            </div>
+                            <textarea class="note-input hidden" placeholder="Some notes..."></textarea>
+
+                            <div class="task-actions">
+                                <button type="button" class="task-action-btn addnote ">+ Add Note</button>
+                                <button type="button" class="task-action-btn addproject ">
+                                    + Add Project
+                                    <i class="fa-solid fa-lock"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="task-footer">
+                            <button type="button" class="btn-cancel">Cancel</button>
+                            <button type="submit" class="btn-save">Save</button>
+                        </div>
+                    </div>
+                </section>
+
+
+            </section>
+
+        </main>
+
+
+
+        <div id="taskSummary" class="task-summary hidden">
+            <div class="summary-item">
+                <span>Pomos:</span>
+                <strong>0 <span>/</span> <strong id="pomos"> 0</strong></strong>
+
+            </div>
+
+            <div class="summary-item">
+                <span>Finish At:</span>
+                <strong id="finishTime">--:--</strong>
+                <span id="remainingHours">(0h)</span>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="message-card">
+            <span class="message">You've finished all your tasks for today 🎉</span>
+            <button class="clear-btn">Clear Tasks</button>
+        </div>
+
+    </div>
+    <img id="celebration" src="./src/assets/image/Confetti.svg" class="celebration hidden ">
+
+
+    <script type="module" src="./src/js/script.js"></script>
+
+</body>
+
+</html>

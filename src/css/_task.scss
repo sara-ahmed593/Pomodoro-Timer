@@ -1,0 +1,310 @@
+ @use './variables';
+ @use "./mixin" as mixins;
+
+ .tasks-section {
+
+     .tasks-header {
+         @include mixins.flex-between;
+
+         h2 {
+             font-size: 1.1rem;
+             font-weight: bold;
+         }
+
+
+     }
+
+     .divider {
+         background-color: variables.$card-bg;
+         width: 100%;
+         height: 3px;
+         border-radius: 3px;
+         margin: 7px 0;
+
+     }
+
+
+     .tasks-list {
+         margin-top: 20px;
+
+         .task-item {
+             background: variables.$text-white;
+             border-radius: 8px;
+             padding: 14px 18px;
+             margin-bottom: 12px;
+             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+             border-left: 6px solid transparent;
+             transition: 0.2s;
+
+             &:hover {
+                 border-left: 6px solid #CCCCCC;
+             }
+
+             &.active {
+                 border-left: 6px solid #000;
+             }
+
+             &.completed {
+                 .task-left {
+                     .task-check-icon {
+                         color: #A34747;
+
+                         &:hover {
+                             color: #C89191;
+                         }
+
+
+                     }
+                 }
+
+                 .task-title {
+                     text-decoration: line-through;
+                     opacity: 0.6;
+                 }
+             }
+
+
+
+             .task-header {
+                 @include mixins.flex-between;
+                 width: 100%;
+             }
+
+             .task-left {
+                 @include mixins.flex-center;
+                 gap: 12px;
+
+
+                 .task-check-icon {
+                     font-size: 1.6rem;
+                     color: variables.$icon-bg;
+                     cursor: pointer;
+
+                     &:hover {
+                         color: variables.$icon-hover;
+                     }
+                 }
+
+                 .task-title {
+                     color: variables.$color-task;
+                     font-size: 1.1rem;
+                     font-weight: bold;
+                     margin: 0;
+                 }
+             }
+
+             .task-right {
+                 @include mixins.flex-center;
+
+                 gap: 18px;
+
+                 .task-counter-text {
+                     color: variables.$num-text;
+                     font-size: 1.1rem;
+                     font-weight: bold;
+                     letter-spacing: 1px;
+                 }
+
+                 .icon-btn {
+                     @include mixins.flex-center;
+                     background: variables.$text-white;
+                     border: 1px solid #e6e6e6;
+                     border-radius: 6px;
+                     width: 32px;
+                     height: 36px;
+
+                     color: variables.$num-text;
+                     cursor: pointer;
+                     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+                     font-size: 1rem;
+
+                     &:hover {
+                         background-color: variables.$icon-bg;
+                     }
+                 }
+             }
+
+             .task-note {
+                 margin-top: 14px;
+                 margin-left: 38px;
+                 background: #FCF8DE;
+                 color: #605515;
+                 padding: 12px 16px;
+                 border-radius: 8px;
+                 font-size: 1rem;
+                 font-weight: 500;
+                 box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.02);
+                 text-align: left;
+             }
+         }
+     }
+
+     .addtask-btn {
+         width: 100%;
+         background: variables.$btn-active-bg ;
+         border: 3px dashed variables.$card-bg;
+         color: variables.$gray-text;
+         padding: 18px;
+         border-radius: 8px;
+         font-size: 1rem;
+         font-weight: bold;
+         cursor: pointer;
+         gap: 8px;
+         transition: 0.2s;
+
+         &:hover {
+             color: variables.$text-white;
+         }
+     }
+
+
+     .add-container {
+         width: 100%;
+         max-width: 480px;
+         margin: 0 auto;
+         background-color: variables.$text-white;
+         border-radius: 8px;
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+
+         .task-card {
+             padding: 10px 15px;
+
+             .task-input {
+                 width: 100%;
+                 border: none;
+                 outline: none;
+                 font-size: 1.3rem;
+                 font-weight: bold;
+                 margin-bottom: 15px;
+
+                 &::placeholder {
+                     color: variables.$color-placeholder;
+                 }
+             }
+
+             .counter-label {
+                 font-size: 1rem;
+                 font-weight: bold;
+                 color: variables.$color-task;
+                 margin-bottom: 12px;
+                 display: flex;
+                 align-items: left;
+             }
+
+             .task-group {
+                 display: flex;
+                 justify-content: left;
+                 align-items: center;
+
+                 gap: 4px;
+
+                 .task-counter {
+                     width: 50px;
+                     height: 40px;
+                     background-color: variables.$counter-bg;
+                     border: none;
+                     border-radius: 6px;
+                     font-size: 1rem;
+                     font-weight: bold;
+                     color: variables.$color-task;
+                     padding-left: 14px;
+                     outline: none;
+                 }
+
+                 .task-counter-btn {
+                     width: 30px;
+                     height: 30px;
+                     background-color: transparent;
+                     border: 1px solid #e0e0e0;
+                     color: #707070;
+                     border-radius: 6px;
+                     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+                     cursor: pointer;
+                     transition: 0.2s;
+                 }
+             }
+
+             .note-input {
+                 width: 100%;
+                 min-height: 80px;
+                 margin-top: 12px;
+                 padding: 10px;
+                 border: none;
+                 border-radius: 6px;
+                 background-color: variables.$counter-bg;
+
+             }
+
+             .task-actions {
+                 display: flex;
+                 justify-content: left;
+                 align-items: center;
+                 gap: 5px;
+
+                 .task-action-btn {
+                     background: none;
+                     border: none;
+                     color: variables.$gray-text;
+                     font-size: 0.9rem;
+                     font-weight: bold;
+                     text-decoration: underline;
+                     cursor: pointer;
+                     padding: 0;
+                     align-items: center;
+                     gap: 4px;
+
+                     &:hover {
+                         color: variables.$color-task;
+                     }
+                 }
+
+
+             }
+         }
+
+         .task-footer {
+             background-color: variables.$footer;
+             padding: 16px 24px;
+             display: flex;
+             justify-content: flex-end;
+             align-items: center;
+             gap: 16px;
+
+
+             .btn-cancel {
+                 background: transparent;
+                 border: none;
+                 border-radius: 8px;
+                 padding: 10px 20px;
+                 color: variables.$gray-text;
+                 font-size: 0.9rem;
+                 font-weight: bold;
+                 cursor: pointer;
+                 transition: 0.3s;
+
+                 &:hover {
+                     color: variables.$save-btn;
+                     background-color: variables.$gray-text;
+                 }
+             }
+
+             .btn-save {
+                 background-color: variables.$save-btn;
+                 color: variables.$text-white;
+                 border: variables.$black-text;
+                 border-radius: 8px;
+                 padding: 10px 20px;
+                 font-size: 0.9rem;
+                 font-weight: bold;
+                 cursor: pointer;
+                 transition: 0.2s;
+
+                 &:hover {
+                     background-color: variables.$hover-btn;
+                 }
+             }
+         }
+     }
+
+ }
