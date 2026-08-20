@@ -169,9 +169,26 @@ body {
     background: rgba(0, 0, 0, .15);
     z-index: 9999;
 
-
+    &.show {
+        animation: celebration 3s forwards;
+    }
 }
 
+@keyframes celebration {
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    99% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
 
 
 @media (max-width:992px) {

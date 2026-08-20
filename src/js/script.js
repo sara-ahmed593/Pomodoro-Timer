@@ -1,73 +1,59 @@
 import {
     tasks,
-    displayTask,
+    renderTask,
     updateSummary,
     resetTaskForm,
+    createTask
 } from './Task.js';
 
 import {
     resetTimer
 } from './Timer.js';
 
-const addtask = document.querySelector(".addtask-btn");
-const addtaskContainer = document.querySelector(".add-container");
-const cancelBtn = document.querySelector(".btn-cancel");
-const countup = document.querySelector(".countup");
-const countdown = document.querySelector(".countdown");
-const taskCounter = document.querySelector(".task-counter");
-const addProject = document.querySelector(".addproject");
-const addNoteBtn = document.querySelector(".addnote");
-const noteInput = document.querySelector(".note-input");
-const saveBtn = document.querySelector(".btn-save");
-const taskInput = document.querySelector(".task-input");
-const tasksList = document.querySelector(".tasks-list");
-const sessionStatus = document.querySelector(".session-status");
-const message = document.querySelector(".message-card");
-const clearBtn = document.querySelector(".clear-btn");
-const celebration = document.getElementById("celebration");
+import { addTaskBtn, addTaskContainer, cancelBtn, count_up, count_down, taskCounter, addProject, addNoteBtn, noteInput, saveBtn, taskInput, tasksList, sessionStatus, message, clearTaskBtn, celebration } from './dom.js';
 
 
 // Celebration handler
 function showCelebration() {
     if (!celebration) return;
     celebration.classList.remove("hidden");
-    setTimeout(() => {
-        celebration.classList.add("hidden");
+    celebration.classList.add("show");
 
-    }, 3000);
+
+
 }
 
 
 // Load saved tasks
 
 tasks.forEach(task => {
-    displayTask(task);
-    updateSummary();
-});
+    renderTask(task);
 
+});
+updateSummary();
 
 // Show the Add Task form
-addtask.addEventListener("click", () => {
-    addtask.classList.add("hidden");
-    addtaskContainer.classList.remove("hidden");
+addTaskBtn.addEventListener("click", () => {
+    addTaskBtn.classList.add("hidden");
+    addTaskContainer.classList.remove("hidden");
 });
 
 // Cancel Forms
 cancelBtn.addEventListener("click", () => {
     resetTaskForm();
-    addtask.classList.remove("hidden");
-    addtaskContainer.classList.add("hidden");
+    addTaskBtn.classList.remove("hidden");
+    addTaskContainer.classList.add("hidden");
 });
 
 // Decrease estimated Pomodoros 
-countdown.addEventListener("click", () => {
+count_down.addEventListener("click", () => {
     if (Number(taskCounter.value) > 1) {
         taskCounter.value = Number(taskCounter.value) - 1;
     }
 });
 // Increase estimated Pomodoros 
 
-countup.addEventListener("click", () => {
+count_up.addEventListener("click", () => {
     taskCounter.value = Number(taskCounter.value) + 1;
 });
 
@@ -88,23 +74,12 @@ addNoteBtn.addEventListener("click", () => {
 saveBtn.addEventListener("click", () => {
     if (taskInput.value.trim() === "") return;
 
-    const newTask = {
-        title: taskInput.value,
-        note: noteInput.value,
-        count: taskCounter.value,
-        completed: false
-    };
-
-    tasks.push(newTask);
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-
-    displayTask(newTask);
-    updateSummary();
+    createTask(taskInput, noteInput, taskCounter);
     resetTaskForm();
 });
 
 // clear array reset action
-clearBtn.addEventListener("click", () => {
+clearTaskBtn.addEventListener("click", () => {
     showCelebration();
     tasks.length = 0;
     localStorage.removeItem("tasks");

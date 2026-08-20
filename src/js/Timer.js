@@ -1,17 +1,6 @@
-const clickSound = new Audio("./src/assets/sound/click-btn.mp3");
-const alarmSound = new Audio("./src/assets/sound/alarm-sound.mp3");
+import { modeBtns, clickSound, alarmSound, timeDisplay, startBtn, nextBtn, container, progressBar, sessionCount, addTaskBtn, addTaskContainer } from "./dom.js";
 
-const modeBtns = document.querySelectorAll('.mode-btn');
 let activeBtn = document.querySelector(".mode-btn.active");
-const timeDisplay = document.querySelector(".time-display");
-const startBtn = document.querySelector(".start-btn");
-const nextBtn = document.querySelector(".next-btn");
-const container = document.querySelector(".container");
-const progress = document.querySelector(".progress");
-const sessionCount = document.querySelector(".session-count");
-const addtask = document.querySelector(".addtask-btn");
-const addtaskContainer = document.querySelector(".add-container");
-
 
 export let currentMode = "Pomodoro";
 export let isRunning = false;
@@ -37,8 +26,7 @@ export const modes = {
         color: "#acaa48"
     }
 };
-
-export let timeLeft = modes[currentMode].minutes * 60;
+let timeLeft = modes[currentMode].minutes * 60;
 let totalTime = timeLeft;
 
 
@@ -48,13 +36,13 @@ export function resetTimer() {
     isRunning = false;
     startBtn.textContent = "START";
     nextBtn.classList.add("hidden");
-    progress.style.width = "0%";
+    progressBar.style.width = "0%";
 }
 
 //update time
 function updateTime() {
     timeLeft--;
-    progress.style.width = ((totalTime - timeLeft) / totalTime) * 100 + '%';
+    progressBar.style.width = ((totalTime - timeLeft) / totalTime) * 100 + '%';
 
     const min = String(Math.floor(timeLeft / 60)).padStart(2, "0");
     const sec = String(timeLeft % 60).padStart(2, "0");
@@ -101,8 +89,8 @@ modeBtns.forEach((btn) => {
 
         resetTimer();
 
-        addtask.classList.remove("hidden");
-        addtaskContainer.classList.add("hidden");
+        addTaskBtn.classList.remove("hidden");
+        addTaskContainer.classList.add("hidden");
     });
 });
 

@@ -1,18 +1,8 @@
 // Task state management
+import { sessionStatus, message, taskInput, taskCounter, noteInput, summary, pomos, finishTime, remainingHours, tasksList, addNoteBtn } from "./dom.js";
+
 export let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 export let activeTask = null;
-
-const summary = document.getElementById("taskSummary");
-const pomos = document.getElementById("pomos");
-const finishTime = document.getElementById("finishTime");
-const remainingHours = document.getElementById("remainingHours");
-const tasksList = document.querySelector(".tasks-list");
-const sessionStatus = document.querySelector(".session-status");
-const taskInput = document.querySelector(".task-input");
-const noteInput = document.querySelector(".note-input");
-const taskCounter = document.querySelector(".task-counter");
-const addNoteBtn = document.querySelector(".addnote");
-const message = document.querySelector(".message-card");
 
 
 
@@ -33,8 +23,7 @@ function showCompletedAllTasks() {
 }
 
 // Create and display a task card
-
-export function displayTask(taskData) {
+export function renderTask(taskData) {
     const task = document.createElement("div");
     task.className = "task-item";
 
@@ -86,7 +75,10 @@ export function displayTask(taskData) {
         activeTask = task;
         sessionStatus.textContent = taskData.title;
     }
+    handleTaskClick(task, icon, taskData);
+}
 
+function handleTaskClick(task, icon, taskData) {
     // active task
     task.addEventListener("click", () => {
         if (activeTask) {
@@ -132,8 +124,9 @@ export function updateSummary() {
 
 
         const remaining = tasks.filter(task => !task.completed).length;
+        const hourPerTask = 0.4;
 
-        remainingHours.textContent = "(" + (remaining * 0.4).toFixed(1) + "h" + ")"
+        remainingHours.textContent = "(" + (remaining * hourPerTask).toFixed(1) + "h" + ")"
 
 
         if (tasks.length > 0 && tasks.every(task => task.completed)) {
@@ -161,4 +154,20 @@ export function updateSummary() {
         summary.classList.add("hidden")
 
     }
+}
+
+export function createTask(taskInput, noteInput, taskCounter
+) {
+    const newTask = {
+        title: taskInput.value,
+        note: noteInput.value,
+        count: taskCounter.value,
+        completed: false
+    };
+
+    tasks.push(newTask);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+
+    renderTask(newTask);
+    updateSummary();
 }
